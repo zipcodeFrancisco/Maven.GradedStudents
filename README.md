@@ -82,12 +82,9 @@ Lisa Simpson -> 100.0
 Milhouse Van Houten -> 87.6
 ```
 
-### void sortStudentsAlpha()
-This function should change Students such that they are sorted alphabetically by last name, and then first name.
-
 ### void sortStudentsByScore()
 This function should change Students such that they are sorted descending by score.  If two students have the same class
-average, then those students should be sorted alphabetically.
+average, it doesn't matter what order they're in.
 
 ### String gradeClass()
 This is the big "challenge" part of the assignment.  What you need to do is give students their final grades.
