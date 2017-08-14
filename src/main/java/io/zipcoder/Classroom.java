@@ -77,13 +77,6 @@ public class Classroom {
     }
 
     /**
-     * Sorts the Students array such that they are alphabetical by last name followed by first name.
-     */
-    public void sortStudentsAlphabetically() {
-
-    }
-
-    /**
      * Sorts the Students array from highest average to lowest, and ties are broken alphabetically.
      */
     public void sortStudentsByScore() {
