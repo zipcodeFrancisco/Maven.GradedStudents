@@ -1,108 +1,450 @@
 # Classroom Objects Lab
-For this lab, we're going to create a Classroom class.  But first, since a classroom without any possible students
-sounds like it belongs in a spooky abandoned school, we need to create Students.
-
-Also, be certain that you have well made unit tests.  That should go without saying, but I'm doing it anyway.
-
-## Part 1: Student Creation
-Let's think about what sort of fields a student should have with it.  I'm thinking for this lab, a student should have:
-
-* first name
-* last name
-* test scores
-
-We're also going to want some helpful fields of
-* totalExams
-* examsTaken
-
-Considering these fields, we should have the following methods:
-
-* A constructor that takes just a first name and a last name.
-* A constructor that takes a first name, a last name, and the total amount of tests that the student will have to take.
-* Getters and setters for everything but test scores.
-* NOTE: there should NOT be a setter for examsTaken since this should only get incremented when a test is taken.
+* **Purpose** - to demonstrate the use of [Java classes]() and [data encapsulation]().
+* **Objective** - to create a `Classroom` which manipulates a composite `List` of `Student` objects which contain data detailing their `firstName`, `lastName`, and `examScores`.
+* **Restrictions** - Ensure unit positive and negative unit tests exist per feature of the application
 
 
-### printExamScores()
-This should return a string that will tell the caller the test scores for that student.
-So, if a student took no tests, then it should spit out `No Exams taken`.
-Otherwise, it could look something like this:
-```
-Exam Scores:
-Exam 1 -> 100
-Exam 2 -> 89
-Exam 3 -> 54
-```
 
-### takeExam(int score)
-This function should just store the grade into the correct position in the `examScores` array.
+## Part 1; Create class `Student`
+* Create a class `Student`.
 
-### changeScoreForExam(int examNum, int newScore)
-This function should take the test number that you want to change the grade for, and the grade to change it to.
-NOTE: `takeTest` and `changeGradeForTest` should return booleans.  If the changes were valid, then return true.
-But if the caller did something weird (like try and put in a negative grade, or try to take more tests than allowed
-or tried to change the grade on a test that the student didn't take yet) then print out a message saying that
-something went wrong and return false.
 
-### getAverage()
-This method should return the student's overall grade.  If they've taken no tests, return 100.0.  Otherwise, just return
-the average of all of the tests they've taken.
 
-## Part 2: Classroom
-Now that we can create students, it only makes sense to put them in a classroom.
-The classroom is merely a class with an array of students and some helpers.
 
-For constructors, we're going to want:
 
-* A no-arg constructor that sets a default `maxStudents`
-* A constructor that takes `maxStudents`
-* A constructor that takes a Student array
 
-We're also going to need a getter for `studentsEnrolled` and a getter and setter for `maxStudents`
 
-Some of the methods to help build the classroom will be:
 
-### boolean addStudent(Student s)
-This method will add a student to the student array, returning false if the array is full.
 
-### Student removeStudent(String firstName, String lastName)
-This method will remove the student from the array, re-order the array, and then return the student that was removed.
-If the student with that firstName and lastName is not in the class, return null.
+<br><br><br><br><br>
 
-### double getClassAverage()
-Return the average of all of the students' averages.  If no student's exist, return 100.0.
+### Part 1.1; Defining instance variables
+* To create a programmatic representation of a `Student`, begin by declaring an instance variable for each of the previously mentioned properties:
+	* `String firstName`
+		* a collection of characters representative of a first name.
+	* `String lastName`
+		* a collection of characters representative of a last name.
+	* `ArrayList<Double> examScores`
+		* a dynamic collection of decimal values representative of test scores.
 
-### String getClassScores()
-Return `No students` if no students are in the class, or something like the following otherwise.
-```
-Students:
-Bart Simpson -> 72.4
-Homer Simpson -> 0.1
-Lisa Simpson -> 100.0
-Milhouse Van Houten -> 87.6
-```
 
-### void sortStudentsByScore()
-This function should change Students such that they are sorted descending by score.  If two students have the same class
-average, it doesn't matter what order they're in.
 
-### String gradeClass()
-This is the big "challenge" part of the assignment.  What you need to do is give students their final grades.
-This should take the entire class, take their averages, and then put them into a bell curve where
 
-* 10% get A
-* 25% get B
-* 30% get C
-* 25% get D
-* 10% get F
 
-If there are no students in the class, it should return `No Students`.  Otherwise, it should look something like this.
-```
-Grades:
-Lisa Simpson -> A
-Milhouse Van Houten -> B
-Bart Simpson -> C
-Homer Simpson -> F
-```
-Remember, the purpose of this is to challenge yourself.  Don't get too caught up in super accurate distributions.
-Focus more on how you could do this programmatically and think about a bunch of test cases.
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+### Part 1.2; Defining construction
+* Define a `Student` constructor whose parameters are used to initalize its instance variables.
+* The `Student` constructor has expected parameters of
+	* `String` representative of a `firstName` 
+	* `String` representative of a `lastName`
+	* `Double[]` representative of a collection of `testScores`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+### Part 1.3; Defining methods
+
+* **Getters and Setters**
+	* Define a [getter and setter](https://en.wikipedia.org/wiki/Mutator_method#Java_example) for each of the instance variables declared in the `Student` class.
+		* **Note:** There should not be a `setter` for the `testScore`. This object's [state](https://cs.stackexchange.com/questions/6536/definition-of-the-state-of-an-object-in-oop) will be [mutated](https://en.wikibooks.org/wiki/Scheme_Programming/Mutability) via a `takeExam` method mentioned below.
+		* Additionally, define a getter, `getNumberOfExamsTaken()`, which returns the total number of exams taken by this student.
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+* **Define method `getExamScores()`**
+	* `Student` should define a method which returns a string representation of all exams taken.
+
+		* Sample Script:
+		
+			```
+			// : Given
+			String firstName = "Leon";
+			String lastName = "Hunter";
+			Double[] examScores = { 100.0, 95.0, 123.0, 96.0 };
+			Student student = new Student(firstName, lastName, examScores);
+			
+			// When
+			String output = student.getExamScores();
+			
+			// Then
+			System.out.println(output);
+			```
+		* Sample Output
+		
+			```
+			Exam Scores:
+				Exam 1 -> 100
+				Exam 2 -> 95
+				Exam 3 -> 123
+				Exam 4 -> 96
+			```
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+* **Define method `addExamScore(double examScore)`**
+	* `Student` should define a method named `addExamScore` which uses a `double` parameter to add an `examScore` to its composite List `examScores`.
+
+		* Sample Script:
+		
+			```
+			// : Given
+			String firstName = "Leon";
+			String lastName = "Hunter";
+			Double[] examScores = { };
+			Student student = new Student(firstName, lastName, examScores);
+			
+			// When
+			student.addExamScore(100.0);
+			String output = student.getExamScores();
+			
+			// Then
+			System.out.println(output);
+			```
+		* Sample Output
+		
+			```
+			Exam Scores:
+				Exam 1 -> 100
+			```
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+* **Define method `setExamScore(int examNumber, double newScore)`**
+	* `Student` should define a method named `setExamScore` which uses an `int` parameter to identify an exam in the list, and a `double` parameter to re-assign the respective value.
+
+		* Sample Script:
+		
+			```
+			// : Given
+			String firstName = "Leon";
+			String lastName = "Hunter";
+			Double[] examScores = { 100.0 };
+			Student student = new Student(firstName, lastName, examScores);
+			
+			// When
+			student.setExamScore(1, 150.0);
+			String output = student.getExamScores();
+			
+			// Then
+			System.out.println(output);
+			```
+		* Sample Output
+		
+			```
+			Exam Scores:
+				Exam 1 -> 150
+			```
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<br><br><br><br><br>
+
+* **Define method `getAverageExamScore()`**
+	* `Student` should define a method named `getAverageExamScore()` which returns the sum of the `examScore` list divided by its `size`.
+
+
+		* Sample Script:
+		
+			```
+			// : Given
+			String firstName = "Leon";
+			String lastName = "Hunter";
+			Double[] examScores = { 100.0, 150.0, 250.0, 0 };
+			Student student = new Student(firstName, lastName, examScores);
+			
+			// When
+			double output = student.getAverageExamScore();
+			
+			// Then
+			System.out.println(output);
+			```
+		* Sample Output
+		
+			```
+			125
+			```
+			
+			
+
+
+<br><br><br><br><br>
+
+* **Define method `toString()`**
+	* `Student` should [override](https://docs.oracle.com/javase/tutorial/java/IandI/override.html) the `toString` method by returning a clean `String` representation of the person.
+
+
+		* Sample Script:
+		
+			```
+			// : Given
+			String firstName = "Leon";
+			String lastName = "Hunter";
+			Double[] examScores = { 100.0, 150.0, 250.0, 0 };
+			Student student = new Student(firstName, lastName, examScores);
+			
+			// When
+			double output = student.toString();
+			
+			// Then
+			System.out.println(output);
+			```
+		* Sample Output
+		
+			```
+			Student Name: Leon Hunter
+			> Average Score: 125
+			> Exam Scores:
+			    Exam 1 -> 100
+			    Exam 2 -> 150
+			    Exam 3 -> 250
+			    Exam 4 -> 0
+			```
+			
+			
+			
+			
+			
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
+
+## Part 2; Create class `Classroom`
+* Create a class `Classroom`
+
+<br><br><br><br><br>
+
+### Part 2.1; Defining instance variables
+* To create a programmatic representation of a `Classroom` begin by declaring an instance variable for each of its properties:
+	* `Student[] students`
+		* a collection of student objects
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+### Part 2.2; Defining construction
+* Define a `Student` constructor whose parameters are used to initalize its instance variable. The class `Classroom` should support 3 different ways of being constructed.
+	
+	1. The class `Student` should define a constructor which takes an argument of an `int` representative of the `maxNumberOfStudents` that this `Classroom` can hold.
+	
+	2. The class `Student` should define an additional constructor which takes an argument of `Student[]` representative of the collection of `Student` objects this `Classroom` will store.
+	
+	3. The class `Student` should define a [nullary constructor](https://en.wikipedia.org/wiki/Nullary_constructor) which initializes the composite `students` object to be an empty array of 30 `Student` objects.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+### Part 2.3; Defining methods
+
+* **Define method `getStudents()`**
+	* Define a getter which returns the composite `students` object.	
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+* **Define method `getAverageExamScore()`**
+	* Define a getter which returns the sum of all exams divded by the number of students.
+
+
+		* Sample Script:
+		
+			```
+			// : Given
+			Double[] s1Scores = { 100.0, 150.0 }
+			Double[] s2Scores = { 225.0, 25.0 }
+			
+			Student s1 = new Student("student", "one", s1Scores);
+			Student s2 = new Student("student", "two", s2Scores);
+			
+			Student[] students = new Student{s1,s2};
+			Classroom classroom = new Classroom(students);
+			
+			// When
+			double output = classroom.getAverageExamScore();
+			
+			// Then
+			System.out.println(output);
+			```
+		* Sample Output
+		
+			```
+			125.0
+			```
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+* **Define method `addStudent(Student student)`**
+	* Define a method which uses a `Student` parameter to add a `Student` object to the composite `students` list.
+
+
+		* Sample Script:
+		
+			```
+			// : Given
+			int maxNumberOfStudents = 1;
+			Classroom classroom = new Classroom(maxNumberOfStudents);
+			Double[] examScores = { 100.0, 150.0, 250.0, 0 };
+			Student student = new Student("Leon", "Hunter", examScores);			
+			// When
+			String[] preEnrollment = classroom.getStudents();
+			classroom.add(s1);
+			String[] postEnrollment = classroom.getStudents();
+			
+			// Then
+			String preEnrollmentAsString = Arrays.toString(preEnrollment);
+			String postEnrollmentAsString = Arrays.toString(postEnrollment);
+
+			System.out.println("===========================");
+			System.out.println(preEnrollmentAsString);
+			System.out.println("===========================");
+			System.out.println(postEnrollmentAsString);
+			```
+		* Sample Output
+		
+			```
+			===========================
+			[]
+			===========================
+			[Student Name: Leon Hunter
+			> Average Score: 125
+			> Exam Scores:
+			    Exam 1 -> 100
+			    Exam 2 -> 150
+			    Exam 3 -> 250
+			    Exam 4 -> 0]
+			```
+			
+			
+
+
+
+
+
+<br><br><br><br><br>
+
+* **Define method `removeStudent(String firstName, String lastName)`**
+	* The class `Classroom` should define a method which uses a `firstName` and `lastName` parameter to identify and remove the respective student from composite `students` object.
+	* Ensure the array is re-ordered after the removal; Null values should be located in the final indices of the array.
+
+
+
+
+
+<br><br><br><br><br>
+
+* **Define method `getStudentsByScore()`**
+	* The class `Classroom` should define a method `getStudentsByScore()` an array representation of `Student` objects sorted in descending order by score. 
+	* If two students have the same class average, order them lexigraphically.
+
+
+
+
+<br><br><br><br><br>
+
+* **Define method `gradeClass()`**
+	* The class `Classroom` should define a method `getGradeBook()` which returns a mapping of `Student` objects to a respective letter grade determined by creating a [grading curve](https://en.wikipedia.org/wiki/Grading_on_a_curve) such that
+	* An `A` is awarded to students whose class average is in the upper 10th percentile.
+	* A `B` is awarded to students whose class average falls between the 25th and 29th percentile.
+	* A `C` is awarded to students whose class average falls between the 30th and 50th percentile.
+	* A `D` is awarded to students whose class average falls between the 51st and 89th percentile.
+	* An `F` is awarded to students whose class average is in the lower 10th percentile.
