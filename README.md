@@ -1,5 +1,5 @@
 # Classroom Objects Lab
-* **Purpose** - to demonstrate the use of [Java classes]() and [data encapsulation]().
+* **Purpose** - to demonstrate the use of [Java classes](https://docs.oracle.com/javase/tutorial/java/concepts/class.html) and [data encapsulation](https://en.wikipedia.org/wiki/Data_encapsulation).
 * **Objective** - to create a `Classroom` which manipulates a composite `List` of `Student` objects which contain data detailing their `firstName`, `lastName`, and `examScores`.
 * **Restrictions** - Ensure unit positive and negative unit tests exist per feature of the application
 
