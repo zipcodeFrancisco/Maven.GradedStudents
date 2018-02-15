@@ -433,7 +433,7 @@
 <br><br><br><br><br>
 
 * **Define method `getStudentsByScore()`**
-	* The class `Classroom` should define a method `getStudentsByScore()` an array representation of `Student` objects sorted in descending order by score. 
+	* The class `Classroom` should define a method `getStudentsByScore()` which returns an array representation of `Student` objects sorted in descending order by score. 
 	* If two students have the same class average, order them lexigraphically.
 
 
@@ -441,7 +441,7 @@
 
 <br><br><br><br><br>
 
-* **Define method `gradeClass()`**
+* **Define method `getGradeBook()`**
 	* The class `Classroom` should define a method `getGradeBook()` which returns a mapping of `Student` objects to a respective letter grade determined by creating a [grading curve](https://en.wikipedia.org/wiki/Grading_on_a_curve) such that
 		* An `A` is awarded to students whose class average is in the upper 10th percentile.
 		* A `B` is awarded to students whose class average falls between the 25th and 29th percentile.
