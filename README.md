@@ -385,6 +385,7 @@
 			Classroom classroom = new Classroom(maxNumberOfStudents);
 			Double[] examScores = { 100.0, 150.0, 250.0, 0 };
 			Student student = new Student("Leon", "Hunter", examScores);			
+
 			// When
 			String[] preEnrollment = classroom.getStudents();
 			classroom.add(s1);
