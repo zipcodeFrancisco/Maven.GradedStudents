@@ -19,7 +19,7 @@
 <br><br><br><br><br>
 
 ### Part 1.1; Defining instance variables
-* To create a programmatic representation of a `Student`, begin by declaring an instance variable for each of the previously mentioned properties:
+* Declare an instance variable for each of the previously mentioned properties:
 	* `String firstName`
 		* a collection of characters representative of a first name.
 	* `String lastName`
@@ -269,7 +269,7 @@
 <br><br><br><br><br>
 
 ### Part 2.1; Defining instance variables
-* To create a programmatic representation of a `Classroom` begin by declaring an instance variable for each of its properties:
+* Declare an instance variable for each of the `Classroom` properties:
 	* `Student[] students`
 		* a collection of student objects
 
